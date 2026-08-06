@@ -1,4 +1,4 @@
-/** Dados públicos e de contato da SuellenDev (PJ) */
+/** Dados públicos e de contato da SuellenDev */
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -10,11 +10,12 @@ export const site = {
   tagline: "Desenvolvimento de Software",
   location: "Vila Velha, ES · Brasil",
   cnpj: "67.894.209/0001-17",
-  email: "suellen.org@gmail.com",
+  email: "suellen.dsredev@gmail.com",
   whatsappE164: "5527988479887",
   whatsappDisplay: "(27) 98847-9887",
   social: {
-    instagram: "https://instagram.com/suellenmiranda.dev",
+    instagram: "https://instagram.com/devnosbastidores",
+    instagramHandle: "@devnosbastidores",
     linkedin: "https://linkedin.com/in/suellenmiranda",
     github: "https://github.com/SuellenMiranda",
     portfolio: "https://suellenmiranda.github.io/Portifolio/",
@@ -26,12 +27,21 @@ export const site = {
   },
   education: "Bacharel em Ciência da Computação — Universidade Vila Velha (UVV)",
   stackHighlight: ["React", "TypeScript", "Node.js", "APIs REST", "SAP ABAP/Fiori"],
+  /** PJ (nota fiscal) ou PF / autônoma (RPA) */
+  contracting: {
+    pj: "PJ — Pessoa Jurídica (nota fiscal / CNPJ)",
+    pf: "PF — Pessoa Física / autônoma (RPA)",
+  },
 } as const;
 
 export function whatsappUrl(message?: string) {
   const base = `https://wa.me/${site.whatsappE164}`;
   if (!message) return base;
   return `${base}?text=${encodeURIComponent(message)}`;
+}
+
+export function mailtoUrl(subject: string, body: string) {
+  return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 export const defaultWhatsappMessage =

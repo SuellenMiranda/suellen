@@ -39,7 +39,7 @@ export default function Hero() {
             </div>
 
             <p className="text-blue-600 font-semibold text-sm tracking-wide uppercase mb-5">
-              {site.tagline} · PJ · {site.location.split(" · ")[0]}
+              {site.tagline} · PJ ou PF · {site.location.split(" · ")[0]}
             </p>
 
             <h1

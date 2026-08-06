@@ -57,7 +57,7 @@ export default function Differentials() {
               Por que trabalhar comigo
             </h2>
             <p className="text-slate-500 text-lg leading-relaxed">
-              Atendimento PJ direto com a desenvolvedora — sem camada comercial no meio.
+              Atendimento direto com a desenvolvedora — como PJ ou PF/autônoma, sem camada comercial no meio.
             </p>
           </div>
 

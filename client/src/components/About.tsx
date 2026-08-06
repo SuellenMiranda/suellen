@@ -30,9 +30,11 @@ export default function About() {
           </p>
           <p className="text-lg text-slate-600 leading-relaxed mb-6">
             Já passei por consultoria SAP (Megawork), desenvolvimento web e cloud (PVT Software),
-            saúde digital (Jade Autism) e VR para treinamentos industriais (Vale/UVV). Como PJ,
-            conduzo projetos de ponta a ponta — do levantamento de requisitos à implantação —
-            com projetos como a plataforma{" "}
+            saúde digital (Jade Autism) e VR para treinamentos industriais (Vale/UVV). Atendo como{" "}
+            <strong className="text-slate-800">PJ</strong> (nota fiscal) ou como{" "}
+            <strong className="text-slate-800">PF / autônoma</strong> (RPA) — o que fizer mais
+            sentido para a sua empresa. Conduzo projetos de ponta a ponta — do levantamento de
+            requisitos à implantação — com projetos como a plataforma{" "}
             <a
               href={site.social.ligav}
               target="_blank"

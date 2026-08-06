@@ -14,7 +14,7 @@ const faqs = [
   {
     question: "Quanto custa um projeto?",
     answer:
-      "O valor depende do tipo de projeto, complexidade e prazo. Cada orçamento é feito sob medida após eu entender suas necessidades. Entre em contato para um orçamento sem compromisso — via WhatsApp ou formulário.",
+      "O valor depende do tipo de projeto, complexidade e prazo. Cada orçamento é feito sob medida. Use o pré-orçamento do site (e-mail) ou fale no WhatsApp — sem compromisso.",
   },
   {
     question: "Quanto tempo leva para desenvolver um projeto?",
@@ -32,9 +32,14 @@ const faqs = [
       "Claro. Você não precisa contratar um projeto inteiro. Se precisa de uma funcionalidade específica ou ajuste pontual, podemos trabalhar só nisso.",
   },
   {
-    question: "Como funciona o pagamento (PJ)?",
+    question: "Como funciona o pagamento — PJ ou PF?",
     answer:
-      "O pagamento é combinado conforme o projeto, com formalização via nota/fatura da minha PJ. Em geral uso entrada + parcelas por etapa entregue — tudo alinhado por escrito antes de começar.",
+      "Atendo nas duas modalidades: PJ (Pessoa Jurídica, com nota fiscal/CNPJ) ou PF (Pessoa Física / autônoma, com RPA). No pré-orçamento você indica a preferência; o pagamento em geral é entrada + parcelas por etapa entregue, tudo alinhado por escrito antes de começar.",
+  },
+  {
+    question: "Como peço um orçamento?",
+    answer:
+      "Use o formulário de pré-orçamento no site: ele pergunta o essencial sobre o projeto e abre um e-mail pronto para enviar. Também respondo pelo WhatsApp ou Instagram @devnosbastidores.",
   },
   {
     question: "Você entrega documentação?",

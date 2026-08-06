@@ -53,7 +53,8 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>{site.legalName}</li>
-              <li>{site.role} · Responsável técnica</li>
+              <li>{site.role}</li>
+              <li>Contratação: PJ (NF) ou PF / autônoma (RPA)</li>
               <li>CNPJ: {site.cnpj}</li>
               <li>{site.location}</li>
               <li>
