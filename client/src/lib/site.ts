@@ -22,7 +22,7 @@ export const site = {
   },
   assets: {
     logo: `${BASE}logo.svg`,
-    photo: `${BASE}suellen.jpg`,
+    photo: `${BASE}suellen-foto.jpg`,
   },
   education: "Bacharel em Ciência da Computação — Universidade Vila Velha (UVV)",
   stackHighlight: ["React", "TypeScript", "Node.js", "APIs REST", "SAP ABAP/Fiori"],
