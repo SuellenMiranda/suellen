@@ -205,12 +205,12 @@ function vitePluginStorageProxy(): Plugin {
 
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
 
-// GitHub Pages (project site): /suellen-dev-landing/
+// GitHub Pages (project site): /suellen/
 // Local / custom domain: /
 const isGitHubPages = process.env.GITHUB_PAGES === "true";
 
 export default defineConfig({
-  base: isGitHubPages ? "/suellen-dev-landing/" : "/",
+  base: isGitHubPages ? "/suellen/" : "/",
   plugins,
   resolve: {
     alias: {

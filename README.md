@@ -2,13 +2,13 @@
 
 Site institucional da **Suellen Miranda Amorim** (PJ) — desenvolvimento de software sob medida.
 
-**Site publicado:** https://suellenmiranda.github.io/suellen-dev-landing/
+**Site publicado:** https://suellenmiranda.github.io/suellen/
 
 ## Stack
 
 - React 19 + TypeScript + Vite
 - Tailwind CSS
-- Deploy automático via GitHub Actions → GitHub Pages
+- Publicação estática via pasta `docs/` no GitHub Pages
 
 ## Desenvolvimento local
 
@@ -25,7 +25,7 @@ Abre em `http://localhost:3000`.
 # Build local (base /)
 pnpm build
 
-# Build para GitHub Pages (base /suellen-dev-landing/)
+# Build para GitHub Pages (base /suellen/)
 pnpm run build:pages
 ```
 
@@ -42,7 +42,7 @@ rm -rf docs && mkdir docs && cp -R dist/public/. docs/ && cp docs/index.html doc
 
 Commit a pasta `docs/` e faça push. Em **Settings → Pages**: Source = **Deploy from a branch** → `main` / `/docs`.
 
-URL: `https://suellenmiranda.github.io/suellen-dev-landing/`
+URL: `https://suellenmiranda.github.io/suellen/`
 
 ## Dados de contato (editar em um lugar)
 
