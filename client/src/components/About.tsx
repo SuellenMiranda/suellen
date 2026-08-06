@@ -1,5 +1,5 @@
 /*
- * Sobre Section — perfil público Suellen Miranda Amorim
+ * Sobre Section — linguagem simples, para quem não é de TI
  */
 import { useReveal } from "@/hooks/useReveal";
 import { Code, Heart, Lightbulb } from "lucide-react";
@@ -22,33 +22,30 @@ export default function About() {
             Quem está por trás do código
           </h2>
           <p className="text-lg text-slate-600 leading-relaxed mb-6">
-            Oi! Eu sou a{" "}
-            <strong className="text-slate-800">{site.legalName}</strong>, {site.role.toLowerCase()}{" "}
-            e responsável pela <strong className="text-slate-800">SuellenDev</strong>.{" "}
-            {site.education}. Atuo em {site.location.split(" · ")[0]} construindo aplicações web e
-            mobile, APIs REST e integrações — inclusive no ecossistema SAP (ABAP e Fiori).
+            Oi! Eu sou a <strong className="text-slate-800">{site.legalName}</strong>, a pessoa
+            por trás da <strong className="text-slate-800">SuellenDev</strong>. {site.education} e
+            trabalho em {site.location.split(" · ")[0]} criando sites, sistemas e aplicativos para
+            o dia a dia de empresas e empreendedores.
           </p>
           <p className="text-lg text-slate-600 leading-relaxed mb-6">
-            Já passei por consultoria SAP (Megawork), desenvolvimento web e cloud (PVT Software),
-            saúde digital (Jade Autism) e VR para treinamentos industriais (Vale/UVV). Atendo como{" "}
-            <strong className="text-slate-800">PJ</strong> (nota fiscal) ou como{" "}
-            <strong className="text-slate-800">PF / autônoma</strong> (RPA) — o que fizer mais
-            sentido para a sua empresa. Conduzo projetos de ponta a ponta — do levantamento de
-            requisitos à implantação — com projetos como a plataforma{" "}
+            Já ajudei em projetos de empresas de tecnologia, saúde e indústria — sempre com o
+            mesmo jeito de trabalhar: ouvir o problema com calma, traduzir isso em uma solução
+            prática e acompanhar até ficar pronto. Também atuo como voluntária no site da{" "}
             <a
-              href={site.social.ligav}
+              href={site.social.ligaFemininaTi}
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline font-medium"
             >
-              ligav.com.br
+              Liga Feminina de TI
             </a>
             .
           </p>
           <p className="text-lg text-slate-600 leading-relaxed mb-12">
-            Cada projeto é acompanhado diretamente por mim. Sem intermediários: você fala com quem
-            entende o negócio e escreve o código. Stack principal:{" "}
-            {site.stackHighlight.join(" · ")}.
+            Você fala direto comigo — sem intermediário e sem conversa enrolada. Posso emitir
+            nota como <strong className="text-slate-800">empresa (PJ)</strong> ou atender como{" "}
+            <strong className="text-slate-800">profissional autônoma (PF)</strong>, o que for
+            mais simples para o seu caso. Trabalho com {site.stackHighlight.join(", ")}.
           </p>
         </div>
 
@@ -60,18 +57,18 @@ export default function About() {
           {[
             {
               icon: Code,
-              title: "Código de qualidade",
-              desc: "Boas práticas, arquitetura organizada e mentalidade de desenvolvimento seguro — sem atalhos que cobram depois.",
+              title: "Feito com cuidado",
+              desc: "Entrego um trabalho organizado, fácil de manter e pensado para durar — sem gambiarra.",
             },
             {
               icon: Heart,
               title: "Atendimento humano",
-              desc: "Comunicação direta e transparente. Você acompanha cada etapa e decide junto o que priorizar.",
+              desc: "Explico cada etapa em português claro. Você acompanha o andamento e decide junto.",
             },
             {
               icon: Lightbulb,
-              title: "Soluções sob medida",
-              desc: "Nada de template genérico. Cada entrega é pensada para o fluxo real do seu negócio.",
+              title: "Sob medida para você",
+              desc: "Nada de modelo genérico. A solução é montada para o jeito que o seu negócio funciona.",
             },
           ].map((item) => (
             <div

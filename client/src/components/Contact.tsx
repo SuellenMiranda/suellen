@@ -97,6 +97,7 @@ type FormState = {
   orcamento: string;
   contratacao: "pj" | "pf" | "";
   detalhesExtras: string;
+  aceitaVariacaoValor: boolean;
 };
 
 const emptyForm: FormState = {
@@ -110,6 +111,7 @@ const emptyForm: FormState = {
   orcamento: "",
   contratacao: "",
   detalhesExtras: "",
+  aceitaVariacaoValor: false,
 };
 
 function ChoiceGroup({
@@ -168,7 +170,11 @@ export default function Contact() {
   const canNextStep0 =
     form.nome.trim() && form.telefone.trim() && form.email.trim();
   const canNextStep1 =
-    form.tipoProjeto && form.descricao.trim().length >= 20 && form.prazo && form.orcamento;
+    form.tipoProjeto &&
+    form.descricao.trim().length >= 20 &&
+    form.prazo &&
+    form.orcamento &&
+    form.aceitaVariacaoValor;
   const canSubmit = form.contratacao !== "";
 
   const buildEmailBody = () => {
@@ -194,6 +200,9 @@ export default function Contact() {
       "— Contratação —",
       `Modalidade: ${contratoLabel}`,
       form.detalhesExtras ? `\nObservações:\n${form.detalhesExtras}` : null,
+      "",
+      "— Ciência —",
+      "Cliente declarou: entende que, de acordo com o que pedir, o valor pode se alterar para mais ou para menos do valor estimado.",
       "",
       "—",
       "Enviado pelo formulário de pré-orçamento do site.",
@@ -413,6 +422,19 @@ export default function Contact() {
                       onChange={set("orcamento")}
                       required
                     />
+                    <label className="flex items-start gap-3 cursor-pointer rounded-lg border border-slate-200 bg-slate-50 p-4 hover:border-blue-200 transition-colors">
+                      <input
+                        type="checkbox"
+                        checked={form.aceitaVariacaoValor}
+                        onChange={(e) => set("aceitaVariacaoValor")(e.target.checked)}
+                        className="mt-1 h-4 w-4 shrink-0 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                        required
+                      />
+                      <span className="text-sm text-slate-600 leading-relaxed">
+                        Eu entendo que, de acordo com o que eu pedir, o valor pode se alterar para
+                        mais ou para menos do valor estimado. *
+                      </span>
+                    </label>
                   </div>
                 )}
 

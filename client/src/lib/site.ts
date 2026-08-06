@@ -19,14 +19,14 @@ export const site = {
     linkedin: "https://linkedin.com/in/suellenmiranda",
     github: "https://github.com/SuellenMiranda",
     portfolio: "https://suellenmiranda.github.io/Portifolio/",
-    ligav: "https://ligav.com.br",
+    ligaFemininaTi: "https://ligafemininadeti.com.br/",
   },
   assets: {
     logo: `${BASE}logo.svg`,
     photo: `${BASE}suellen-foto.jpg`,
   },
-  education: "Bacharel em Ciência da Computação — Universidade Vila Velha (UVV)",
-  stackHighlight: ["React", "TypeScript", "Node.js", "APIs REST", "SAP ABAP/Fiori"],
+  education: "Formada em Ciência da Computação pela Universidade Vila Velha (UVV)",
+  stackHighlight: ["sites e sistemas", "aplicativos", "automações", "sistemas empresariais"],
   /** PJ (nota fiscal) ou PF / autônoma (RPA) */
   contracting: {
     pj: "PJ — Pessoa Jurídica (nota fiscal / CNPJ)",
