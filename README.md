@@ -44,6 +44,12 @@ Commit a pasta `docs/` e faça push. Em **Settings → Pages**: Source = **Deplo
 
 URL: `https://suellenmiranda.github.io/suellen/`
 
+## Pré-orçamento (e-mail direto)
+
+O formulário envia o pedido para `suellen.dsredev@gmail.com` via [FormSubmit](https://formsubmit.co) (gratuito), sem abrir o app de e-mail do visitante.
+
+**Na primeira vez** que alguém enviar, o FormSubmit manda um e-mail de ativação para você — abra e confirme o link. Depois disso, os pedidos chegam normais na caixa de entrada.
+
 ## Dados de contato (editar em um lugar)
 
 Arquivo: [`client/src/lib/site.ts`](client/src/lib/site.ts)

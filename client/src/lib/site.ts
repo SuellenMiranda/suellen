@@ -44,5 +44,67 @@ export function mailtoUrl(subject: string, body: string) {
   return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
+/** Payload do pré-orçamento enviado direto para o e-mail (FormSubmit, gratuito). */
+export type QuoteRequestPayload = {
+  subject: string;
+  nome: string;
+  empresa?: string;
+  telefone: string;
+  email: string;
+  tipoProjeto: string;
+  descricao: string;
+  prazo: string;
+  orcamento: string;
+  contratacao: string;
+  detalhesExtras?: string;
+  message: string;
+};
+
+/**
+ * Envia o pré-orçamento sem abrir o cliente de e-mail do visitante.
+ * Serviço gratuito FormSubmit — na 1ª vez, confirme o e-mail em suellen.dsredev@gmail.com.
+ */
+export async function sendQuoteRequest(payload: QuoteRequestPayload): Promise<void> {
+  const res = await fetch(
+    `https://formsubmit.co/ajax/${encodeURIComponent(site.email)}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        _subject: payload.subject,
+        _template: "table",
+        _captcha: "false",
+        _honey: "",
+        name: payload.nome,
+        email: payload.email,
+        telefone: payload.telefone,
+        empresa: payload.empresa?.trim() || "—",
+        tipo_projeto: payload.tipoProjeto,
+        prazo: payload.prazo,
+        orcamento: payload.orcamento,
+        contratacao: payload.contratacao,
+        descricao: payload.descricao,
+        observacoes: payload.detalhesExtras?.trim() || "—",
+        message: payload.message,
+      }),
+    },
+  );
+
+  const data = (await res.json().catch(() => ({}))) as {
+    success?: boolean | string;
+    message?: string;
+  };
+
+  const ok = data.success === true || data.success === "true";
+  if (!res.ok || !ok) {
+    throw new Error(
+      data.message || "Não foi possível enviar o pré-orçamento. Tente de novo em instantes.",
+    );
+  }
+}
+
 export const defaultWhatsappMessage =
   "Olá, Suellen! Vi o site da SuellenDev e gostaria de conversar sobre um projeto.";

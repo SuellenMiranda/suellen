@@ -18,7 +18,7 @@ import {
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
-import { defaultWhatsappMessage, mailtoUrl, site, whatsappUrl } from "@/lib/site";
+import { defaultWhatsappMessage, sendQuoteRequest, site, whatsappUrl } from "@/lib/site";
 
 const socialLinks = [
   {
@@ -161,6 +161,8 @@ export default function Contact() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormState>(emptyForm);
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const set =
     <K extends keyof FormState>(key: K) =>
@@ -175,7 +177,7 @@ export default function Contact() {
     form.prazo &&
     form.orcamento &&
     form.aceitaVariacaoValor;
-  const canSubmit = form.contratacao !== "";
+  const canSubmit = form.contratacao !== "" && !submitting;
 
   const buildEmailBody = () => {
     const contratoLabel =
@@ -211,13 +213,42 @@ export default function Contact() {
       .join("\n");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!canSubmit) return;
+    if (!canSubmit || form.contratacao === "") return;
+
+    setError(null);
+    setSubmitting(true);
+
     const subject = `Pré-orçamento SuellenDev — ${form.tipoProjeto} (${form.nome})`;
-    const href = mailtoUrl(subject, buildEmailBody());
-    window.location.href = href;
-    setSent(true);
+    const contratoLabel =
+      form.contratacao === "pj" ? site.contracting.pj : site.contracting.pf;
+
+    try {
+      await sendQuoteRequest({
+        subject,
+        nome: form.nome.trim(),
+        empresa: form.empresa.trim() || undefined,
+        telefone: form.telefone.trim(),
+        email: form.email.trim(),
+        tipoProjeto: form.tipoProjeto,
+        descricao: form.descricao.trim(),
+        prazo: form.prazo,
+        orcamento: form.orcamento,
+        contratacao: contratoLabel,
+        detalhesExtras: form.detalhesExtras.trim() || undefined,
+        message: buildEmailBody(),
+      });
+      setSent(true);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Não foi possível enviar. Tente de novo ou fale no WhatsApp.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -234,9 +265,8 @@ export default function Contact() {
             Peça um pré-orçamento
           </h2>
           <p className="text-slate-500 text-lg leading-relaxed">
-            Responda algumas perguntas essenciais sobre o projeto. No fim, o pedido abre no seu
-            e-mail para enviar para{" "}
-            <span className="text-slate-700 font-medium">{site.email}</span>.
+            Responda algumas perguntas essenciais sobre o projeto. O pedido chega direto no meu
+            e-mail — sem abrir o app de e-mail no meio do caminho.
           </p>
         </div>
 
@@ -269,35 +299,24 @@ export default function Contact() {
               <div className="bg-white rounded-xl border border-blue-200 p-8 text-center">
                 <CheckCircle2 className="text-blue-500 mx-auto mb-4" size={40} />
                 <h3 className="text-lg font-semibold text-slate-800 mb-2">
-                  Quase lá — confira o e-mail
+                  Pré-orçamento enviado
                 </h3>
                 <p className="text-slate-500 text-sm mb-6">
-                  Seu app de e-mail deve ter aberto com o pré-orçamento preenchido. É só enviar
-                  para {site.email}. Se não abriu, use o botão abaixo.
+                  Recebi seu pedido. Em breve entro em contato pelo e-mail ou WhatsApp que você
+                  informou.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <a
-                    href={mailtoUrl(
-                      `Pré-orçamento SuellenDev — ${form.tipoProjeto} (${form.nome})`,
-                      buildEmailBody(),
-                    )}
-                    className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-lg text-sm"
-                  >
-                    <Mail size={16} />
-                    Abrir e-mail de novo
-                  </a>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => {
-                      setSent(false);
-                      setStep(0);
-                      setForm(emptyForm);
-                    }}
-                  >
-                    Preencher outro
-                  </Button>
-                </div>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    setSent(false);
+                    setError(null);
+                    setStep(0);
+                    setForm(emptyForm);
+                  }}
+                >
+                  Preencher outro
+                </Button>
               </div>
             ) : (
               <form
@@ -500,9 +519,25 @@ export default function Contact() {
                         {form.orcamento || "—"}
                       </p>
                     </div>
+                    {error && (
+                      <div
+                        role="alert"
+                        className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                      >
+                        {error} Se preferir, fale direto no{" "}
+                        <a
+                          href={whatsappUrl(defaultWhatsappMessage)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-medium underline underline-offset-2"
+                        >
+                          WhatsApp
+                        </a>
+                        .
+                      </div>
+                    )}
                   </div>
                 )}
-
                 <div className="flex gap-3 pt-2">
                   {step > 0 && (
                     <Button
@@ -532,7 +567,7 @@ export default function Contact() {
                       disabled={!canSubmit}
                     >
                       <Send size={16} className="mr-2" />
-                      Enviar por e-mail
+                      {submitting ? "Enviando..." : "Enviar pré-orçamento"}
                     </Button>
                   )}
                 </div>
