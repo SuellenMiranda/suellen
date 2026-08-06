@@ -38,7 +38,7 @@ export const site = {
    * o aviso some do site.
    */
   formSubmit: {
-    needsActivation: true,
+    needsActivation: false,
     /** Cole aqui o link "Activate Form" do e-mail (opcional; também dá para colar no site). */
     activationUrl: "",
   },
@@ -72,14 +72,14 @@ export type QuoteRequestPayload = {
 
 /**
  * Envia o pré-orçamento sem abrir o cliente de e-mail do visitante.
- * Serviço gratuito FormSubmit — na 1ª vez, confirme o e-mail em suellen.dsredev@gmail.com.
+ * Serviço gratuito FormSubmit — destinatário: site.email
  */
 export async function sendQuoteRequest(payload: QuoteRequestPayload): Promise<void> {
   const data = await postFormSubmit({
     _subject: payload.subject,
     _template: "table",
     _captcha: "false",
-    _honey: "",
+    _replyto: payload.email,
     name: payload.nome,
     email: payload.email,
     telefone: payload.telefone,
@@ -106,16 +106,17 @@ export async function requestFormSubmitActivation(): Promise<string> {
   const data = await postFormSubmit({
     _subject: "Ativação do formulário SuellenDev (pode ignorar)",
     _captcha: "false",
-    _honey: "",
     name: "SuellenDev — ativação",
     email: site.email,
     message:
       "Pedido de ativação do formulário de pré-orçamento. Abra o e-mail do FormSubmit e clique em Activate Form.",
   });
 
-  if (data.message) return data.message;
   if (data.success === true || data.success === "true") {
-    return "Pedido enviado. Confira a caixa de entrada (e o spam) de " + site.email + ".";
+    return (
+      data.message ||
+      `Pedido enviado. Confira a caixa de entrada (e o spam) de ${site.email}.`
+    );
   }
   throw new Error(
     data.message || "Não foi possível pedir a ativação. Tente de novo em instantes.",
@@ -140,7 +141,8 @@ async function postFormSubmit(body: Record<string, string>) {
     message?: string;
   };
 
-  if (!res.ok && !(data.success === true || data.success === "true")) {
+  // FormSubmit devolve HTTP 200 mesmo em falha lógica (success: "false")
+  if (!res.ok || data.success === false || data.success === "false") {
     throw new Error(
       data.message || "Falha na comunicação com o serviço de e-mail. Tente de novo.",
     );
