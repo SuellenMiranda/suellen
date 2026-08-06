@@ -24,7 +24,7 @@ const projects = [
     title: "JobMatch",
     role: "App de recrutamento · TCC",
     desc: "Aplicativo para conectar candidatos e empresas, com cadastro, conversa e gestão de perfis.",
-    href: "https://github.com/SuellenMiranda/Job-Match",
+    href: "https://www.canva.com/design/DAGIgROScjU/pI_dgAkL-cm6MNA-eXIisA/view",
     tag: "Acadêmico",
   },
   {
