@@ -32,6 +32,16 @@ export const site = {
     pj: "PJ — Pessoa Jurídica (nota fiscal / CNPJ)",
     pf: "PF — Pessoa Física / autônoma (RPA)",
   },
+  /**
+   * FormSubmit: na 1ª vez o serviço pede ativação por e-mail.
+   * Depois de ativar, mude needsActivation para false e publique de novo —
+   * o aviso some do site.
+   */
+  formSubmit: {
+    needsActivation: true,
+    /** Cole aqui o link "Activate Form" do e-mail (opcional; também dá para colar no site). */
+    activationUrl: "",
+  },
 } as const;
 
 export function whatsappUrl(message?: string) {
@@ -65,6 +75,54 @@ export type QuoteRequestPayload = {
  * Serviço gratuito FormSubmit — na 1ª vez, confirme o e-mail em suellen.dsredev@gmail.com.
  */
 export async function sendQuoteRequest(payload: QuoteRequestPayload): Promise<void> {
+  const data = await postFormSubmit({
+    _subject: payload.subject,
+    _template: "table",
+    _captcha: "false",
+    _honey: "",
+    name: payload.nome,
+    email: payload.email,
+    telefone: payload.telefone,
+    empresa: payload.empresa?.trim() || "—",
+    tipo_projeto: payload.tipoProjeto,
+    prazo: payload.prazo,
+    orcamento: payload.orcamento,
+    contratacao: payload.contratacao,
+    descricao: payload.descricao,
+    observacoes: payload.detalhesExtras?.trim() || "—",
+    message: payload.message,
+  });
+
+  const ok = data.success === true || data.success === "true";
+  if (!ok) {
+    throw new Error(
+      data.message || "Não foi possível enviar o pré-orçamento. Tente de novo em instantes.",
+    );
+  }
+}
+
+/** Dispara o e-mail de ativação do FormSubmit (só precisa na 1ª configuração). */
+export async function requestFormSubmitActivation(): Promise<string> {
+  const data = await postFormSubmit({
+    _subject: "Ativação do formulário SuellenDev (pode ignorar)",
+    _captcha: "false",
+    _honey: "",
+    name: "SuellenDev — ativação",
+    email: site.email,
+    message:
+      "Pedido de ativação do formulário de pré-orçamento. Abra o e-mail do FormSubmit e clique em Activate Form.",
+  });
+
+  if (data.message) return data.message;
+  if (data.success === true || data.success === "true") {
+    return "Pedido enviado. Confira a caixa de entrada (e o spam) de " + site.email + ".";
+  }
+  throw new Error(
+    data.message || "Não foi possível pedir a ativação. Tente de novo em instantes.",
+  );
+}
+
+async function postFormSubmit(body: Record<string, string>) {
   const res = await fetch(
     `https://formsubmit.co/ajax/${encodeURIComponent(site.email)}`,
     {
@@ -73,23 +131,7 @@ export async function sendQuoteRequest(payload: QuoteRequestPayload): Promise<vo
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({
-        _subject: payload.subject,
-        _template: "table",
-        _captcha: "false",
-        _honey: "",
-        name: payload.nome,
-        email: payload.email,
-        telefone: payload.telefone,
-        empresa: payload.empresa?.trim() || "—",
-        tipo_projeto: payload.tipoProjeto,
-        prazo: payload.prazo,
-        orcamento: payload.orcamento,
-        contratacao: payload.contratacao,
-        descricao: payload.descricao,
-        observacoes: payload.detalhesExtras?.trim() || "—",
-        message: payload.message,
-      }),
+      body: JSON.stringify(body),
     },
   );
 
@@ -98,12 +140,13 @@ export async function sendQuoteRequest(payload: QuoteRequestPayload): Promise<vo
     message?: string;
   };
 
-  const ok = data.success === true || data.success === "true";
-  if (!res.ok || !ok) {
+  if (!res.ok && !(data.success === true || data.success === "true")) {
     throw new Error(
-      data.message || "Não foi possível enviar o pré-orçamento. Tente de novo em instantes.",
+      data.message || "Falha na comunicação com o serviço de e-mail. Tente de novo.",
     );
   }
+
+  return data;
 }
 
 export const defaultWhatsappMessage =

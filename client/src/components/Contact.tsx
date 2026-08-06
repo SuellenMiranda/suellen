@@ -19,6 +19,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { defaultWhatsappMessage, sendQuoteRequest, site, whatsappUrl } from "@/lib/site";
+import FormSubmitActivation from "@/components/FormSubmitActivation";
 
 const socialLinks = [
   {
@@ -269,6 +270,8 @@ export default function Contact() {
             e-mail — sem abrir o app de e-mail no meio do caminho.
           </p>
         </div>
+
+        <FormSubmitActivation />
 
         <div className="grid lg:grid-cols-5 gap-10 max-w-5xl mx-auto">
           <div className={`reveal ${isVisible ? "visible" : ""} lg:col-span-2`}>

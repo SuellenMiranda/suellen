@@ -48,7 +48,7 @@ URL: `https://suellenmiranda.github.io/suellen/`
 
 O formulário envia o pedido para `suellen.dsredev@gmail.com` via [FormSubmit](https://formsubmit.co) (gratuito), sem abrir o app de e-mail do visitante.
 
-**Na primeira vez** que alguém enviar, o FormSubmit manda um e-mail de ativação para você — abra e confirme o link. Depois disso, os pedidos chegam normais na caixa de entrada.
+**Na primeira vez** que alguém enviar (ou você clicar em “Receber e-mail de ativação” na seção Contato), o FormSubmit manda um e-mail de ativação para você. Cole o link no aviso do site, abra e ative. Depois clique em **Já ativei** (some neste navegador) e me avise — ou mude `formSubmit.needsActivation` para `false` em [`client/src/lib/site.ts`](client/src/lib/site.ts) e publique de novo para sumir para todo mundo.
 
 ## Dados de contato (editar em um lugar)
 
