@@ -1,14 +1,15 @@
 /*
  * Header — Executive Minimalism v2
- * Lighter background on hero, stronger brand presence
  */
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { site } from "@/lib/site";
 
 const navLinks = [
   { href: "#sobre", label: "Sobre" },
   { href: "#servicos", label: "Serviços" },
+  { href: "#projetos", label: "Projetos" },
   { href: "#como-funciona", label: "Como Funciona" },
   { href: "#diferenciais", label: "Diferenciais" },
   { href: "#faq", label: "FAQ" },
@@ -34,13 +35,8 @@ export default function Header() {
       }`}
     >
       <div className="container flex items-center justify-between h-16 lg:h-18">
-        {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5 shrink-0">
-          <img
-            src="/manus-storage/logo_bf458adf.png"
-            alt="SuellenDev"
-            className="h-8 w-8"
-          />
+        <a href="#hero" className="flex items-center gap-2.5 shrink-0">
+          <img src={site.assets.logo} alt="SuellenDev" className="h-8 w-8 rounded-md" />
           <span
             className="font-bold text-lg tracking-tight text-slate-800"
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
@@ -49,8 +45,7 @@ export default function Header() {
           </span>
         </a>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-7">
+        <nav className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -70,7 +65,6 @@ export default function Header() {
           </a>
         </nav>
 
-        {/* Mobile toggle */}
         <button
           className="lg:hidden p-2 text-slate-700"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -80,7 +74,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <div className="lg:hidden bg-white border-t border-slate-100 shadow-lg">
           <nav className="container py-4 flex flex-col gap-2">

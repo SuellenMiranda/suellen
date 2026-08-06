@@ -14,32 +14,32 @@ const faqs = [
   {
     question: "Quanto custa um projeto?",
     answer:
-      "O valor depende do tipo de projeto, complexidade e prazo. Cada orçamento é feito sob medida após entendermos suas necessidades. Entre em contato para solicitar um orçamento sem compromisso.",
+      "O valor depende do tipo de projeto, complexidade e prazo. Cada orçamento é feito sob medida após eu entender suas necessidades. Entre em contato para um orçamento sem compromisso — via WhatsApp ou formulário.",
   },
   {
     question: "Quanto tempo leva para desenvolver um projeto?",
     answer:
-      "O prazo varia conforme o escopo. Um site simples pode ficar pronto em 2 a 4 semanas, enquanto um sistema completo pode levar de 1 a 3 meses. Durante a conversa inicial, definimos um cronograma realista.",
+      "O prazo varia conforme o escopo. Um site simples pode ficar pronto em 2 a 4 semanas; um sistema completo, de 1 a 3 meses. Na conversa inicial definimos um cronograma realista com marcos de entrega.",
   },
   {
-    question: "Vocês fazem manutenção de sistemas existentes?",
+    question: "Você faz manutenção de sistemas existentes?",
     answer:
-      "Sim! Fazemos manutenção corretiva e evolutiva em sistemas que já existem. Podemos corrigir erros, adicionar funcionalidades ou melhorar o desempenho do seu sistema atual.",
+      "Sim. Faço manutenção corretiva e evolutiva em sistemas já existentes: correções, novas funcionalidades e melhorias de desempenho.",
   },
   {
-    question: "Posso contratar apenas uma melhoria no meu sistema?",
+    question: "Posso contratar só uma melhoria pontual?",
     answer:
-      "Claro! Você não precisa contratar um projeto inteiro. Se precisa de uma funcionalidade específica ou de uma melhoria pontual, podemos trabalhar apenas nisso.",
+      "Claro. Você não precisa contratar um projeto inteiro. Se precisa de uma funcionalidade específica ou ajuste pontual, podemos trabalhar só nisso.",
   },
   {
-    question: "Como funciona o pagamento?",
+    question: "Como funciona o pagamento (PJ)?",
     answer:
-      "O pagamento é combinado conforme o projeto. Geralmente trabalhamos com um valor inicial para dar início ao projeto e parcelas conforme as etapas são concluídas. Tudo é formalizado e transparente.",
+      "O pagamento é combinado conforme o projeto, com formalização via nota/fatura da minha PJ. Em geral uso entrada + parcelas por etapa entregue — tudo alinhado por escrito antes de começar.",
   },
   {
-    question: "Vocês fornecem documentação do projeto?",
+    question: "Você entrega documentação?",
     answer:
-      "Sim. Todos os projetos são entregues com documentação técnica clara, facilitando manutenções futuras e a continuidade do trabalho mesmo por outros profissionais.",
+      "Sim. Os projetos saem com documentação técnica clara, facilitando manutenções futuras e a continuidade por outros profissionais, se precisar.",
   },
 ];
 
@@ -60,7 +60,7 @@ export default function FAQ() {
             Tire suas dúvidas
           </h2>
           <p className="text-slate-500 text-lg leading-relaxed">
-            As perguntas mais comuns sobre nossos serviços.
+            As perguntas mais comuns sobre os serviços da SuellenDev.
           </p>
         </div>
 

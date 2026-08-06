@@ -1,17 +1,19 @@
 /*
- * Footer — Executive Minimalism v2
- * Stronger brand presence, blue accent
+ * Footer — dados legais PJ + redes
  */
-import { Instagram, Linkedin, MessageCircle, ArrowUp } from "lucide-react";
+import { Github, Instagram, Linkedin, MessageCircle, ArrowUp } from "lucide-react";
+import { defaultWhatsappMessage, site, whatsappUrl } from "@/lib/site";
 
 export default function Footer() {
   return (
     <footer className="bg-slate-900 text-slate-400">
-      {/* CTA strip */}
       <div className="border-b border-slate-800">
         <div className="container py-12 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <h3 className="text-white text-xl font-bold tracking-tight" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+            <h3
+              className="text-white text-xl font-bold tracking-tight"
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            >
               Pronto para transformar seu negócio?
             </h3>
             <p className="text-slate-400 text-sm mt-1">
@@ -29,14 +31,9 @@ export default function Footer() {
 
       <div className="container py-14">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-12">
-          {/* Brand */}
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <img
-                src="/manus-storage/logo_bf458adf.png"
-                alt="SuellenDev"
-                className="h-9 w-9 brightness-0 invert"
-              />
+              <img src={site.assets.logo} alt="SuellenDev" className="h-9 w-9 rounded-md" />
               <span
                 className="text-white font-bold text-lg"
                 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
@@ -45,59 +42,77 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm leading-relaxed max-w-xs">
-              Soluções em desenvolvimento de software sob medida para o seu negócio.
+              Soluções em desenvolvimento de software sob medida. Atendimento direto com a
+              desenvolvedora responsável.
             </p>
           </div>
 
-          {/* Info */}
           <div>
             <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
               Informações
             </h4>
             <ul className="space-y-2.5 text-sm">
-              <li>Suellen Miranda — Desenvolvedora Responsável</li>
-              <li>CNPJ: XX.XXX.XXX/0001-XX</li>
-              <li>contato@suellendev.com</li>
+              <li>{site.legalName}</li>
+              <li>{site.role} · Responsável técnica</li>
+              <li>CNPJ: {site.cnpj}</li>
+              <li>{site.location}</li>
+              <li>
+                <a href={`mailto:${site.email}`} className="hover:text-white transition-colors">
+                  {site.email}
+                </a>
+              </li>
             </ul>
           </div>
 
-          {/* Social */}
           <div>
             <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
               Redes sociais
             </h4>
             <div className="flex gap-3">
               <a
-                href="https://wa.me/5500000000000"
+                href={whatsappUrl(defaultWhatsappMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-blue-600 flex items-center justify-center transition-colors duration-300"
+                className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-green-600 flex items-center justify-center transition-colors duration-300"
+                aria-label="WhatsApp"
               >
                 <MessageCircle size={18} className="text-white" />
               </a>
               <a
-                href="https://instagram.com/suellenmiranda.dev"
+                href={site.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-pink-600 flex items-center justify-center transition-colors duration-300"
+                aria-label="Instagram"
               >
                 <Instagram size={18} className="text-white" />
               </a>
               <a
-                href="https://linkedin.com/in/suellenmiranda"
+                href={site.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-blue-600 flex items-center justify-center transition-colors duration-300"
+                aria-label="LinkedIn"
               >
                 <Linkedin size={18} className="text-white" />
+              </a>
+              <a
+                href={site.social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-slate-600 flex items-center justify-center transition-colors duration-300"
+                aria-label="GitHub"
+              >
+                <Github size={18} className="text-white" />
               </a>
             </div>
           </div>
         </div>
 
         <div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-slate-500">
-            © {new Date().getFullYear()} Suellen Miranda. Todos os direitos reservados.
+          <p className="text-xs text-slate-500 text-center sm:text-left">
+            © {new Date().getFullYear()} {site.legalName} · {site.brand}. Todos os direitos
+            reservados.
           </p>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

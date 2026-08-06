@@ -54,10 +54,10 @@ export default function Differentials() {
               className="text-3xl lg:text-4xl font-bold text-slate-800 tracking-tight mb-4"
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
-              Por que escolher a SuellenDev
+              Por que trabalhar comigo
             </h2>
             <p className="text-slate-500 text-lg leading-relaxed">
-              O que faz nosso trabalho ser diferente de qualquer outra empresa.
+              Atendimento PJ direto com a desenvolvedora — sem camada comercial no meio.
             </p>
           </div>
 

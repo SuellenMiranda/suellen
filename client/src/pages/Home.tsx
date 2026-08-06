@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
+import Portfolio from "@/components/Portfolio";
 import HowItWorks from "@/components/HowItWorks";
 import Differentials from "@/components/Differentials";
 import ForWhom from "@/components/ForWhom";
@@ -18,6 +19,7 @@ export default function Home() {
         <Hero />
         <About />
         <Services />
+        <Portfolio />
         <HowItWorks />
         <Differentials />
         <ForWhom />

@@ -1,9 +1,9 @@
 /*
- * Sobre Section — Executive Minimalism
- * Clean, centered, with subtle illustration
+ * Sobre Section — perfil público Suellen Miranda Amorim
  */
 import { useReveal } from "@/hooks/useReveal";
 import { Code, Heart, Lightbulb } from "lucide-react";
+import { site } from "@/lib/site";
 
 export default function About() {
   const { ref, isVisible } = useReveal();
@@ -22,14 +22,31 @@ export default function About() {
             Quem está por trás do código
           </h2>
           <p className="text-lg text-slate-600 leading-relaxed mb-6">
-            Oi! Eu sou a <strong className="text-slate-800">Suellen Miranda</strong>, desenvolvedora de
-            software e fundadora desta empresa. Trabalho desenvolvendo soluções tecnológicas
-            que fazem a diferença no dia a dia de empresas e empreendedores.
+            Oi! Eu sou a{" "}
+            <strong className="text-slate-800">{site.legalName}</strong>, {site.role.toLowerCase()}{" "}
+            e responsável pela <strong className="text-slate-800">SuellenDev</strong>.{" "}
+            {site.education}. Atuo em {site.location.split(" · ")[0]} construindo aplicações web e
+            mobile, APIs REST e integrações — inclusive no ecossistema SAP (ABAP e Fiori).
+          </p>
+          <p className="text-lg text-slate-600 leading-relaxed mb-6">
+            Já passei por consultoria SAP (Megawork), desenvolvimento web e cloud (PVT Software),
+            saúde digital (Jade Autism) e VR para treinamentos industriais (Vale/UVV). Como PJ,
+            conduzo projetos de ponta a ponta — do levantamento de requisitos à implantação —
+            com projetos como a plataforma{" "}
+            <a
+              href={site.social.ligav}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline font-medium"
+            >
+              ligav.com.br
+            </a>
+            .
           </p>
           <p className="text-lg text-slate-600 leading-relaxed mb-12">
-            Cada projeto é acompanhado diretamente por mim — desde a conversa inicial até a
-            entrega final. Sem intermediários, sem frustrações. Você fala direto com quem
-            entende e resolve.
+            Cada projeto é acompanhado diretamente por mim. Sem intermediários: você fala com quem
+            entende o negócio e escreve o código. Stack principal:{" "}
+            {site.stackHighlight.join(" · ")}.
           </p>
         </div>
 
@@ -42,17 +59,17 @@ export default function About() {
             {
               icon: Code,
               title: "Código de qualidade",
-              desc: "Cada projeto é desenvolvido com boas práticas, código limpo e documentação clara.",
+              desc: "Boas práticas, arquitetura organizada e mentalidade de desenvolvimento seguro — sem atalhos que cobram depois.",
             },
             {
               icon: Heart,
               title: "Atendimento humano",
-              desc: "Comunicação direta e transparente. Você acompanha cada etapa do projeto.",
+              desc: "Comunicação direta e transparente. Você acompanha cada etapa e decide junto o que priorizar.",
             },
             {
               icon: Lightbulb,
               title: "Soluções sob medida",
-              desc: "Não uso templates prontos. Cada solução é pensada para o seu negócio.",
+              desc: "Nada de template genérico. Cada entrega é pensada para o fluxo real do seu negócio.",
             },
           ].map((item) => (
             <div
