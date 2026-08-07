@@ -1,8 +1,8 @@
 /*
  * Footer — dados legais PJ + redes
  */
-import { Github, Instagram, Linkedin, MessageCircle, ArrowUp } from "lucide-react";
-import { defaultWhatsappMessage, site, whatsappUrl } from "@/lib/site";
+import { Github, Instagram, Linkedin, ArrowUp } from "lucide-react";
+import { site } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -17,7 +17,7 @@ export default function Footer() {
               Pronto para transformar seu negócio?
             </h3>
             <p className="text-slate-400 text-sm mt-1">
-              Solicite um orçamento sem compromisso.
+              Peça um pré-orçamento ou escreva no e-mail — sem compromisso.
             </p>
           </div>
           <a
@@ -70,15 +70,6 @@ export default function Footer() {
               Redes sociais
             </h4>
             <div className="flex gap-3">
-              <a
-                href={whatsappUrl(defaultWhatsappMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-green-600 flex items-center justify-center transition-colors duration-300"
-                aria-label="WhatsApp"
-              >
-                <MessageCircle size={18} className="text-white" />
-              </a>
               <a
                 href={site.social.instagram}
                 target="_blank"

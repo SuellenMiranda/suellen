@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import {
-  MessageCircle,
   Instagram,
   Linkedin,
   Mail,
@@ -18,16 +17,16 @@ import {
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
-import { defaultWhatsappMessage, sendQuoteRequest, site, whatsappUrl } from "@/lib/site";
+import { sendQuoteRequest, site } from "@/lib/site";
 import FormSubmitActivation from "@/components/FormSubmitActivation";
 
 const socialLinks = [
   {
-    icon: MessageCircle,
-    label: `WhatsApp · ${site.whatsappDisplay}`,
-    href: whatsappUrl(defaultWhatsappMessage),
-    color: "hover:bg-green-50 hover:border-green-200 hover:text-green-600",
-    iconColor: "text-green-600",
+    icon: Mail,
+    label: site.email,
+    href: `mailto:${site.email}`,
+    color: "hover:bg-amber-50 hover:border-amber-200 hover:text-amber-600",
+    iconColor: "text-amber-600",
   },
   {
     icon: Instagram,
@@ -49,13 +48,6 @@ const socialLinks = [
     href: site.social.github,
     color: "hover:bg-slate-100 hover:border-slate-300 hover:text-slate-800",
     iconColor: "text-slate-700",
-  },
-  {
-    icon: Mail,
-    label: site.email,
-    href: `mailto:${site.email}`,
-    color: "hover:bg-amber-50 hover:border-amber-200 hover:text-amber-600",
-    iconColor: "text-amber-600",
   },
 ];
 
@@ -189,7 +181,7 @@ export default function Contact() {
       "— Contato —",
       `Nome: ${form.nome}`,
       form.empresa ? `Empresa: ${form.empresa}` : null,
-      `Telefone / WhatsApp: ${form.telefone}`,
+      `Telefone para retorno: ${form.telefone}`,
       `E-mail do solicitante: ${form.email}`,
       "",
       "— Projeto —",
@@ -245,7 +237,7 @@ export default function Contact() {
       setError(
         err instanceof Error
           ? err.message
-          : "Não foi possível enviar. Tente de novo ou fale no WhatsApp.",
+          : "Não foi possível enviar. Tente de novo ou escreva direto no e-mail.",
       );
     } finally {
       setSubmitting(false);
@@ -266,8 +258,15 @@ export default function Contact() {
             Peça um pré-orçamento
           </h2>
           <p className="text-slate-500 text-lg leading-relaxed">
-            Responda algumas perguntas essenciais sobre o projeto. O pedido chega direto no meu
-            e-mail — sem abrir o app de e-mail no meio do caminho.
+            Prefere falar direto? Escreva para{" "}
+            <a
+              href={`mailto:${site.email}`}
+              className="text-slate-700 font-medium hover:text-blue-600 underline underline-offset-2"
+            >
+              {site.email}
+            </a>
+            . Ou preencha o pré-orçamento abaixo — em ambos os casos eu retorno, e se fizer sentido
+            continuo pelo WhatsApp.
           </p>
         </div>
 
@@ -293,7 +292,8 @@ export default function Contact() {
             <p className="text-sm text-slate-500 leading-relaxed">
               Atendo como <strong className="text-slate-700">PJ</strong> (nota fiscal) ou como{" "}
               <strong className="text-slate-700">PF / autônoma</strong> (RPA), conforme o que
-              funcionar melhor para você.
+              funcionar melhor para você. O contato inicial é por e-mail ou pelo formulário — se
+              precisar, eu retorno pelo WhatsApp.
             </p>
           </div>
 
@@ -305,8 +305,8 @@ export default function Contact() {
                   Pré-orçamento enviado
                 </h3>
                 <p className="text-slate-500 text-sm mb-6">
-                  Recebi seu pedido. Em breve entro em contato pelo e-mail ou WhatsApp que você
-                  informou.
+                  Recebi seu pedido. Em breve retorno pelo e-mail — e, se fizer sentido, também pelo
+                  WhatsApp no telefone que você informou.
                 </p>
                 <Button
                   type="button"
@@ -380,7 +380,7 @@ export default function Contact() {
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
-                        <Label htmlFor="telefone">Telefone / WhatsApp *</Label>
+                        <Label htmlFor="telefone">Telefone (para retorno) *</Label>
                         <Input
                           id="telefone"
                           required
@@ -527,14 +527,12 @@ export default function Contact() {
                         role="alert"
                         className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
                       >
-                        {error} Se preferir, fale direto no{" "}
+                        {error} Se preferir, escreva direto para{" "}
                         <a
-                          href={whatsappUrl(defaultWhatsappMessage)}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          href={`mailto:${site.email}`}
                           className="font-medium underline underline-offset-2"
                         >
-                          WhatsApp
+                          {site.email}
                         </a>
                         .
                       </div>

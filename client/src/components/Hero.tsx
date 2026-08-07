@@ -3,8 +3,8 @@
  * Light, premium feel with strong typography
  * Founder photo as refined brand asset
  */
-import { ArrowRight, MessageCircle } from "lucide-react";
-import { defaultWhatsappMessage, site, whatsappUrl } from "@/lib/site";
+import { ArrowRight, Mail } from "lucide-react";
+import { site } from "@/lib/site";
 
 export default function Hero() {
   return (
@@ -65,13 +65,11 @@ export default function Hero() {
                 <ArrowRight size={16} />
               </a>
               <a
-                href={whatsappUrl(defaultWhatsappMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`mailto:${site.email}`}
                 className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-700 font-semibold px-7 py-3.5 rounded-lg border border-slate-200 transition-all duration-200 active:scale-[0.97] text-sm"
               >
-                <MessageCircle size={16} className="text-green-600" />
-                Falar pelo WhatsApp
+                <Mail size={16} className="text-blue-600" />
+                Enviar e-mail
               </a>
             </div>
           </div>

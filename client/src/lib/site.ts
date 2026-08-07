@@ -11,8 +11,6 @@ export const site = {
   location: "Vila Velha, ES · Brasil",
   cnpj: "67.894.209/0001-17",
   email: "suellen.dsredev@gmail.com",
-  whatsappE164: "5527988479887",
-  whatsappDisplay: "(27) 98847-9887",
   social: {
     instagram: "https://instagram.com/devnosbastidores",
     instagramHandle: "@devnosbastidores",
@@ -43,12 +41,6 @@ export const site = {
     activationUrl: "",
   },
 } as const;
-
-export function whatsappUrl(message?: string) {
-  const base = `https://wa.me/${site.whatsappE164}`;
-  if (!message) return base;
-  return `${base}?text=${encodeURIComponent(message)}`;
-}
 
 export function mailtoUrl(subject: string, body: string) {
   return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -150,6 +142,3 @@ async function postFormSubmit(body: Record<string, string>) {
 
   return data;
 }
-
-export const defaultWhatsappMessage =
-  "Olá, Suellen! Vi o site da SuellenDev e gostaria de conversar sobre um projeto.";

@@ -14,7 +14,7 @@ const faqs = [
   {
     question: "Quanto custa um projeto?",
     answer:
-      "O valor depende do tipo de projeto, complexidade e prazo. Cada orçamento é feito sob medida. Use o pré-orçamento do site ou fale no WhatsApp — sem compromisso.",
+      "O valor depende do tipo de projeto, complexidade e prazo. Cada orçamento é feito sob medida. Use o pré-orçamento do site ou escreva no e-mail — sem compromisso.",
   },
   {
     question: "Quanto tempo leva para desenvolver um projeto?",
@@ -39,7 +39,7 @@ const faqs = [
   {
     question: "Como peço um orçamento?",
     answer:
-      "Use o formulário de pré-orçamento no site: ele pergunta o essencial sobre o projeto e envia o pedido direto para mim. Também respondo pelo WhatsApp ou Instagram @devnosbastidores.",
+      "Use o pré-orçamento do site ou escreva direto no e-mail disponível. Em ambos os casos eu retorno, e se fizer sentido continuo a conversa pelo WhatsApp. Também estou no Instagram @devnosbastidores.",
   },
   {
     question: "Você entrega documentação?",

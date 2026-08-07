@@ -54,11 +54,10 @@ O formulário envia o pedido para `suellen.dsredev@gmail.com` via [FormSubmit](h
 
 Arquivo: [`client/src/lib/site.ts`](client/src/lib/site.ts)
 
-- Nome legal, CNPJ, WhatsApp, e-mail, redes e assets
+- Nome legal, CNPJ, e-mail, redes e assets
 
 ## Contato
 
-- WhatsApp: (27) 98847-9887
 - E-mail: suellen.dsredev@gmail.com
 - LinkedIn: [suellenmiranda](https://linkedin.com/in/suellenmiranda)
 - Instagram: [@devnosbastidores](https://instagram.com/devnosbastidores)
