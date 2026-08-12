@@ -5,20 +5,24 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
-
-const navLinks = [
-  { href: "#sobre", label: "Sobre" },
-  { href: "#servicos", label: "Serviços" },
-  { href: "#projetos", label: "Projetos" },
-  { href: "#como-funciona", label: "Como Funciona" },
-  { href: "#diferenciais", label: "Diferenciais" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contato", label: "Orçamento" },
-];
+import { useLocale } from "@/i18n/LocaleContext";
+import SiteControls from "@/components/SiteControls";
+import { headerShell, text } from "@/lib/theme-classes";
 
 export default function Header() {
+  const { t } = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navLinks = [
+    { href: "#sobre", label: t.nav.about },
+    { href: "#servicos", label: t.nav.services },
+    { href: "#projetos", label: t.nav.projects },
+    { href: "#como-funciona", label: t.nav.howItWorks },
+    { href: "#diferenciais", label: t.nav.differentials },
+    { href: "#faq", label: t.nav.faq },
+    { href: "#contato", label: t.nav.contact },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -28,68 +32,64 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100"
-          : "bg-white/80 backdrop-blur-sm"
-      }`}
+      className={`${headerShell.base} ${scrolled ? headerShell.scrolled : headerShell.top}`}
     >
-      <div className="container flex items-center justify-between h-16 lg:h-18">
+      <div className="container flex items-center justify-between h-16 lg:h-18 gap-3">
         <a href="#hero" className="flex items-center gap-2.5 shrink-0">
-          <img src={site.assets.logo} alt="SuellenDev" className="h-8 w-8 rounded-md" />
+          <img src={site.assets.logo} alt={site.brand} className="h-8 w-8 rounded-md" />
           <span
-            className="font-bold text-lg tracking-tight text-slate-800"
+            className={`font-bold text-lg tracking-tight ${text.heading}`}
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
-            Suellen<span className="text-blue-600">Dev</span>
+            Suellen<span className={text.accent}>Dev</span>
           </span>
         </a>
 
-        <nav className="hidden lg:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-5">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors duration-200"
-            >
+            <a key={link.href} href={link.href} className={headerShell.link}>
               {link.label}
             </a>
           ))}
+          <SiteControls />
           <a href="#contato">
             <Button
               className="text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/15"
               size="sm"
             >
-              Solicitar Orçamento
+              {t.nav.cta}
             </Button>
           </a>
         </nav>
 
-        <button
-          className="lg:hidden p-2 text-slate-700"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Menu"
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <SiteControls compact />
+          <button
+            className={`p-2 ${text.heading}`}
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={t.nav.menu}
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-slate-100 shadow-lg">
+        <div className={headerShell.mobile}>
           <nav className="container py-4 flex flex-col gap-2">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-slate-700 font-medium py-2.5 text-sm"
+                className={headerShell.mobileLink}
               >
                 {link.label}
               </a>
             ))}
             <a href="#contato" onClick={() => setMobileOpen(false)} className="mt-2">
               <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold" size="sm">
-                Solicitar Orçamento
+                {t.nav.cta}
               </Button>
             </a>
           </nav>

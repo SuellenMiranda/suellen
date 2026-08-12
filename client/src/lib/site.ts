@@ -60,6 +60,7 @@ export type QuoteRequestPayload = {
   contratacao: string;
   detalhesExtras?: string;
   message: string;
+  errorMessage?: string;
 };
 
 /**
@@ -88,7 +89,7 @@ export async function sendQuoteRequest(payload: QuoteRequestPayload): Promise<vo
   const ok = data.success === true || data.success === "true";
   if (!ok) {
     throw new Error(
-      data.message || "Não foi possível enviar o pré-orçamento. Tente de novo em instantes.",
+      data.message || payload.errorMessage || "Não foi possível enviar o pré-orçamento.",
     );
   }
 }

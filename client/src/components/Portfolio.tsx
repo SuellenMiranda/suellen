@@ -4,30 +4,13 @@
 import { useReveal } from "@/hooks/useReveal";
 import { ExternalLink } from "lucide-react";
 import { site } from "@/lib/site";
+import { useLocale } from "@/i18n/LocaleContext";
+import { section, text } from "@/lib/theme-classes";
 
-const impactProject = {
-  title: "Liga Feminina de TI",
-  role: "Site institucional · Voluntária",
-  desc: "Ajudo no site da organização: páginas, conteúdo e melhorias para a Liga se comunicar melhor com a comunidade.",
-  href: site.social.ligaFemininaTi,
-  tag: "Impacto",
-};
-
-const projects = [
-  {
-    title: "JobMatch",
-    role: "App de recrutamento · TCC",
-    desc: "Aplicativo para conectar candidatos e empresas, com cadastro, conversa e gestão de perfis.",
-    href: "https://www.canva.com/design/DAGIgROScjU/pI_dgAkL-cm6MNA-eXIisA/view",
-    tag: "Acadêmico",
-  },
-  {
-    title: "Portfólio técnico",
-    role: "Site pessoal",
-    desc: "Página com meus projetos e trajetória profissional — fácil de navegar no celular ou no computador.",
-    href: site.social.portfolio,
-    tag: "Pessoal",
-  },
+const projectHrefs = [
+  site.social.ligaFemininaTi,
+  "https://www.canva.com/design/DAGIgROScjU/pI_dgAkL-cm6MNA-eXIisA/view",
+  site.social.portfolio,
 ];
 
 function ProjectCard({
@@ -46,43 +29,52 @@ function ProjectCard({
       href={project.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block p-6 rounded-xl border border-slate-100 bg-slate-50/50 hover:border-blue-200 hover:bg-white hover:shadow-md hover:shadow-blue-50 transition-all duration-300 h-full"
+      className={`group block p-6 rounded-xl border transition-all duration-300 h-full hover:shadow-md hover:shadow-blue-50 dark:hover:shadow-blue-950/20 ${section.card}`}
     >
       <div className="flex items-start justify-between gap-3 mb-3">
-        <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">
+        <span className={`text-xs font-semibold uppercase tracking-wider ${text.accent}`}>
           {project.tag}
         </span>
         <ExternalLink
           size={16}
-          className="text-slate-300 group-hover:text-blue-500 transition-colors shrink-0"
+          className="text-slate-300 dark:text-slate-600 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors shrink-0"
         />
       </div>
-      <h3 className="text-lg font-semibold text-slate-800 mb-1">{project.title}</h3>
-      <p className="text-sm text-blue-600/80 font-medium mb-3">{project.role}</p>
-      <p className="text-slate-500 text-sm leading-relaxed">{project.desc}</p>
+      <h3 className={`text-lg font-semibold mb-1 ${text.heading}`}>{project.title}</h3>
+      <p className={`text-sm font-medium mb-3 ${text.accent} opacity-80`}>{project.role}</p>
+      <p className={`text-sm leading-relaxed ${text.body}`}>{project.desc}</p>
     </a>
   );
 }
 
 export default function Portfolio() {
+  const { t } = useLocale();
   const { ref, isVisible } = useReveal();
 
+  const impactProject = {
+    ...t.portfolio.impact,
+    href: projectHrefs[0],
+  };
+
+  const projects = t.portfolio.items.map((item, index) => ({
+    ...item,
+    href: projectHrefs[index + 1],
+  }));
+
   return (
-    <section id="projetos" className="py-24 lg:py-32 bg-white">
+    <section id="projetos" className={`py-24 lg:py-32 ${section.light}`}>
       <div className="container" ref={ref}>
         <div className={`reveal ${isVisible ? "visible" : ""} max-w-2xl mb-14`}>
-          <p className="text-blue-600 font-semibold text-sm tracking-wide uppercase mb-4">
-            Projetos
+          <p className={`${text.accent} font-semibold text-sm tracking-wide uppercase mb-4`}>
+            {t.portfolio.eyebrow}
           </p>
           <h2
-            className="text-3xl lg:text-4xl font-bold text-slate-800 tracking-tight mb-4"
+            className={`text-3xl lg:text-4xl font-bold tracking-tight mb-4 ${text.heading}`}
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
-            Trabalho com resultados reais
+            {t.portfolio.title}
           </h2>
-          <p className="text-slate-500 text-lg leading-relaxed">
-            Alguns trabalhos públicos e entregas que representam minha atuação de ponta a ponta.
-          </p>
+          <p className={`text-lg leading-relaxed ${text.body}`}>{t.portfolio.subtitle}</p>
         </div>
 
         <div className={`stagger-children space-y-6 ${isVisible ? "visible" : ""}`}>
