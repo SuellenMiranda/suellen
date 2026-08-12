@@ -33,7 +33,7 @@ export default function Hero() {
 
       <div className="container relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center pt-24 pb-16 lg:pt-28 lg:pb-20">
-          <div className="text-center lg:text-left order-2 lg:order-1">
+          <div className="text-center lg:text-left order-2 lg:order-1 relative z-0">
             <div className="flex items-center gap-3 justify-center lg:justify-start mb-8">
               <img src={site.assets.logo} alt={site.brand} className="h-10 w-10 rounded-lg" />
               <span
@@ -79,7 +79,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+          <div className="flex justify-center lg:justify-end order-1 lg:order-2 relative z-10">
             <div className="relative isolate">
               <div
                 className="absolute -inset-6 bg-blue-100/50 dark:bg-blue-950/30 rounded-[2rem] z-0"
@@ -100,7 +100,7 @@ export default function Hero() {
                 className="relative z-10 w-64 h-80 sm:w-72 sm:h-[380px] lg:w-80 lg:h-[440px] object-cover object-top rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-black/40"
               />
 
-              <div className={`absolute -bottom-5 -left-5 rounded-xl shadow-lg px-4 py-3 flex items-center gap-3 ${section.cardSolid}`}>
+              <div className={`absolute -bottom-5 -left-5 z-20 rounded-xl shadow-lg px-4 py-3 flex items-center gap-3 ${section.cardSolid}`}>
                 <div className="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center">
                   <img src={site.assets.logo} alt="" className="w-5 h-5" />
                 </div>
