@@ -2,6 +2,11 @@
 
 const BASE = import.meta.env.BASE_URL;
 
+/** Garante barra entre base (/suellen/) e o nome do arquivo estático. */
+function publicAsset(path: string) {
+  return `${BASE}${path.replace(/^\//, "")}`;
+}
+
 export const site = {
   brand: "SuellenDev",
   legalName: "Suellen Miranda Amorim",
@@ -20,8 +25,8 @@ export const site = {
     ligaFemininaTi: "https://ligafemininadeti.com.br/",
   },
   assets: {
-    logo: `${BASE}logo.svg`,
-    photo: `${BASE}suellen-foto.jpg`,
+    logo: publicAsset("logo.svg"),
+    photo: publicAsset("suellen-foto.jpg"),
   },
   education: "Formada em Ciência da Computação pela Universidade Vila Velha (UVV)",
   stackHighlight: ["sites e sistemas", "aplicativos", "automações", "sistemas empresariais"],

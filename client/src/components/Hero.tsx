@@ -80,14 +80,24 @@ export default function Hero() {
           </div>
 
           <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-            <div className="relative">
-              <div className="absolute -inset-6 bg-blue-100/50 dark:bg-blue-950/30 rounded-[2rem] -z-10" />
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 to-transparent dark:from-blue-900/20 rounded-2xl -z-10 blur-sm" />
+            <div className="relative isolate">
+              <div
+                className="absolute -inset-6 bg-blue-100/50 dark:bg-blue-950/30 rounded-[2rem] z-0"
+                aria-hidden
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-br from-blue-100/30 to-transparent dark:from-blue-900/20 rounded-2xl z-0 blur-sm pointer-events-none"
+                aria-hidden
+              />
 
               <img
                 src={site.assets.photo}
                 alt={`${site.shortName} — ${t.site.role}`}
-                className="relative w-64 h-80 sm:w-72 sm:h-[380px] lg:w-80 lg:h-[440px] object-cover object-top rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-black/40"
+                width={320}
+                height={440}
+                decoding="async"
+                fetchPriority="high"
+                className="relative z-10 w-64 h-80 sm:w-72 sm:h-[380px] lg:w-80 lg:h-[440px] object-cover object-top rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-black/40"
               />
 
               <div className={`absolute -bottom-5 -left-5 rounded-xl shadow-lg px-4 py-3 flex items-center gap-3 ${section.cardSolid}`}>
