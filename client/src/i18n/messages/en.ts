@@ -303,7 +303,8 @@ export const en: Messages = {
       description: "E.g.: I need a system to manage client appointments and payments...",
       extras: "References, integrations, constraints, etc. (optional)",
     },
-    minChars: "Minimum of about 20 characters.",
+    minChars: "The more detail, the better the reply.",
+    missingPrefix: "To continue, still missing:",
     consent:
       "I understand that depending on what I request, the final price may be higher or lower than the estimate.",
     contractOptions: {

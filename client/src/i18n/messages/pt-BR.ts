@@ -304,7 +304,8 @@ export const ptBR: Messages = {
         "Ex.: preciso de um sistema para controlar agenda e pagamentos dos clientes...",
       extras: "Referências, integrações, restrições, etc. (opcional)",
     },
-    minChars: "Mínimo de cerca de 20 caracteres.",
+    minChars: "Quanto mais detalhes, melhor o retorno.",
+    missingPrefix: "Para continuar, ainda falta:",
     consent:
       "Eu entendo que, de acordo com o que eu pedir, o valor pode se alterar para mais ou para menos do valor estimado.",
     contractOptions: {

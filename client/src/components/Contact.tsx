@@ -139,12 +139,14 @@ export default function Contact() {
 
   const canNextStep0 =
     form.nome.trim() && form.telefone.trim() && form.email.trim();
-  const canNextStep1 =
-    form.tipoProjeto &&
-    form.descricao.trim().length >= 20 &&
-    form.prazo &&
-    form.orcamento &&
-    form.aceitaVariacaoValor;
+  const step1Missing = [
+    !form.tipoProjeto ? t.contact.labels.projectType : null,
+    !form.descricao.trim() ? t.contact.labels.description : null,
+    !form.prazo ? t.contact.labels.timeline : null,
+    !form.orcamento ? t.contact.labels.budget : null,
+    !form.aceitaVariacaoValor ? t.contact.consent : null,
+  ].filter((item): item is string => item !== null);
+  const canNextStep1 = step1Missing.length === 0;
   const canSubmit = form.contratacao !== "" && !submitting;
 
   const buildEmailBody = () => {
@@ -514,15 +516,25 @@ export default function Contact() {
                     </Button>
                   )}
                   {step < 2 ? (
-                    <Button
-                      type="button"
-                      className="flex-1 bg-blue-600 hover:bg-blue-700"
-                      disabled={step === 0 ? !canNextStep0 : !canNextStep1}
-                      onClick={() => setStep((s) => s + 1)}
-                    >
-                      {t.contact.continue}
-                      <ArrowRight size={16} className="ml-2" />
-                    </Button>
+                    <div className="flex-1 space-y-2">
+                      {step === 1 && !canNextStep1 && (
+                        <p className="text-xs leading-relaxed text-amber-700 dark:text-amber-300">
+                          {t.contact.missingPrefix}{" "}
+                          {step1Missing
+                            .map((item) => item.replace(/\s*\*$/, ""))
+                            .join(" · ")}
+                        </p>
+                      )}
+                      <Button
+                        type="button"
+                        className="w-full bg-blue-600 hover:bg-blue-700"
+                        disabled={step === 0 ? !canNextStep0 : !canNextStep1}
+                        onClick={() => setStep((s) => s + 1)}
+                      >
+                        {t.contact.continue}
+                        <ArrowRight size={16} className="ml-2" />
+                      </Button>
+                    </div>
                   ) : (
                     <Button
                       type="submit"

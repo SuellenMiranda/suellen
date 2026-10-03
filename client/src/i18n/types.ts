@@ -121,6 +121,7 @@ export type Messages = {
       extras: string;
     };
     minChars: string;
+    missingPrefix: string;
     consent: string;
     contractOptions: {
       pj: { title: string; desc: string };
